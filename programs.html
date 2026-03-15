@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Programs — KESAN</title>
+  <link rel="icon" type="image/png" href="assets/kesan_icon.png">
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body>
+
+  <nav class="nav" id="mainNav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">
+        <img src="assets/kesan_icon.png" alt="KESAN Logo" />
+        <div class="nav-logo-text">
+          <strong>KESAN</strong>
+          <span>Persatuan Kemajuan Insan</span>
+        </div>
+      </a>
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="journey.html">Mentoring Journey</a>
+        <a href="programs.html">Programs</a>
+        <a href="mailto:info@kesan.org.bn" class="nav-cta">Work with KESAN</a>
+      </div>
+      <button class="nav-hamburger" onclick="toggleMenu()" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <div class="nav-mobile" id="mobileMenu">
+      <a href="index.html">Home</a>
+      <a href="journey.html">Mentoring Journey</a>
+      <a href="programs.html">Programs</a>
+      <a href="mailto:info@kesan.org.bn">Work with KESAN</a>
+    </div>
+  </nav>
+
+
+  <!-- ═══════════════════════════════════
+     PAGE HERO
+     ════════════════════════════════════ -->
+  <section class="page-hero">
+    <div class="page-hero-inner">
+      <div class="section-label fade-up">Our Programs</div>
+      <h1 class="fade-up delay-1">
+        Programs That <em style="font-style:italic;color:var(--gold)">Shape</em> Leaders
+      </h1>
+      <!-- ← EDIT INTRO TEXT HERE -->
+      <p class="fade-up delay-2">
+        Each KESAN program is designed to develop youth leadership through structured mentoring, real responsibilities,
+        and community engagement.
+      </p>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════
+     PROGRAMS GRID
+     Filter buttons: filterPrograms('category', this)
+     Valid categories: 'all' | 'personal' | 'team' | 'community'
+     ════════════════════════════════════ -->
+  <section class="section programs-section">
+    <div class="section-inner">
+
+      <!-- Filter bar -->
+      <div class="filter-bar">
+        <button class="filter-btn active" onclick="filterPrograms('all', this)">All Programs</button>
+        <button class="filter-btn" onclick="filterPrograms('personal', this)">Personal Leadership</button>
+        <button class="filter-btn" onclick="filterPrograms('team', this)">Team Leadership</button>
+        <button class="filter-btn" onclick="filterPrograms('community', this)">Community Leadership</button>
+      </div>
+
+      <!-- Programs grid — to add a new program, duplicate a .program-card block -->
+      <div class="programs-grid" id="programsGrid">
+
+
+        <!-- ═══ PROGRAM CARD 1 ═══
+           data-category: personal | team | community
+           ← CHANGE category to affect which filter shows this card -->
+        <div class="program-card scroll-reveal" data-category="personal">
+
+          <!-- Photo section
+             ← REPLACE src WITH REAL PROGRAM PHOTO
+             If multiple photos exist, you can swap them on click via JS later. -->
+          <div class="program-photos">
+            <img src="assets/kesan_gp_1.jpg" alt="KESAN Leadership Foundation Camp photos" />
+            <!-- Category badge overlaid on photo -->
+            <span class="program-cat-tag tag-personal">Personal</span>
+            <!-- Photo count badge -->
+            <span class="program-photos-badge">Program Photos</span>
+          </div>
+
+          <div class="program-header">
+            <span class="program-number">Program 01</span>
+            <!-- ← EDIT PROGRAM NAME HERE -->
+            <h3>KESAN Leadership Foundation Camp</h3>
+            <!-- ← EDIT SHORT DESCRIPTION HERE -->
+            <p>An intensive residential program introducing youth to structured leadership fundamentals and personal
+              development.</p>
+          </div>
+
+          <!-- Key stats — ← EDIT NUMBERS HERE -->
+          <div class="program-meta">
+            <div class="meta-stat">
+              <strong>48</strong>
+              <span>Participants</span>
+            </div>
+            <div class="meta-divider"></div>
+            <div class="meta-stat">
+              <strong>3</strong>
+              <span>Days</span>
+            </div>
+            <div class="meta-divider"></div>
+            <div class="meta-stat">
+              <strong>2023</strong>
+              <span>Year</span>
+            </div>
+          </div>
+
+          <div class="program-body">
+            <h4>Press Release Highlights</h4>
+            <!-- ← EDIT PRESS RELEASE SUMMARY HERE -->
+            <p>The Leadership Foundation Camp brought together 48 youth from across Brunei for three days of intensive
+              mentoring, self-discovery activities, and leadership workshops.</p>
+            <!-- ← EDIT BULLET HIGHLIGHTS HERE -->
+            <ul class="program-highlights">
+              <li>Participants from 6 secondary schools</li>
+              <li>Facilitated by 12 trained KESAN mentors</li>
+              <li>Endorsed by Ministry of Education Brunei</li>
+            </ul>
+          </div>
+
+          <div class="program-footer">
+            <!-- ← CHANGE href TO REAL PRESS RELEASE LINK OR PDF -->
+            <a href="#" class="press-btn">
+              <svg viewBox="0 0 24 24">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                <polyline points="14,2 14,8 20,8" />
+                <line x1="16" y1="13" x2="8" y2="13" />
+                <line x1="16" y1="17" x2="8" y2="17" />
+              </svg>
+              Read Press Release
+            </a>
+            <span class="year-badge">2023</span>
+          </div>
+        </div>
+        <!-- ═══ END PROGRAM CARD 1 ═══ -->
+
+
+        <!-- ═══ PROGRAM CARD 2 ═══ -->
+        <div class="program-card scroll-reveal" data-category="team">
+          <div class="program-photos">
+            <img src="assets/kesan_gp_4.jpeg" alt="Youth Leaders Assembly photos" />
+            <span class="program-cat-tag tag-team">Team</span>
+            <span class="program-photos-badge">Program Photos</span>
+          </div>
+          <div class="program-header">
+            <span class="program-number">Program 02</span>
+            <h3>Youth Leaders Assembly</h3>
+            <p>A collaborative gathering of student leaders developing team leadership through structured group
+              challenges and mentored reflection.</p>
+          </div>
+          <div class="program-meta">
+            <div class="meta-stat">
+              <strong>120</strong>
+              <span>Participants</span>
+            </div>
+            <div class="meta-divider"></div>
+            <div class="meta-stat">
+              <strong>2</strong>
+              <span>Days</span>
+            </div>
+            <div class="meta-divider"></div>
+            <div class="meta-stat">
+              <strong>2023</strong>
+              <span>Year</span>
+            </div>
+          </div>
+          <div class="program-body">
+            <h4>Press Release Highlights</h4>
+            <p>The Assembly convened student leaders from universities and colleges across Brunei, creating a platform
+              for peer learning and collaborative leadership development.</p>
+            <ul class="program-highlights">
+              <li>Participants from UBD, UNISSA, and ITB</li>
+              <li>Included team leadership simulation exercises</li>
+              <li>Partnered with Brunei National Youth Council</li>
+            </ul>
+          </div>
+          <div class="program-footer">
+            <a href="#" class="press-btn">
+              <svg viewBox="0 0 24 24">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                <polyline points="14,2 14,8 20,8" />
+                <line x1="16" y1="13" x2="8" y2="13" />
+                <line x1="16" y1="17" x2="8" y2="17" />
+              </svg>
+              Read Press Release
+            </a>
+            <span class="year-badge">2023</span>
+          </div>
+        </div>
+        <!-- ═══ END PROGRAM CARD 2 ═══ -->
+
+
+        <!-- ═══ PROGRAM CARD 3 ═══ -->
+        <div class="program-card scroll-reveal" data-category="community">
+          <div class="program-photos">
+            <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=700&q=80"
+              alt="Community Impact Initiative photos" />
+            <span class="program-cat-tag tag-community">Community</span>
+            <span class="program-photos-badge">Program Photos</span>
+          </div>
+          <div class="program-header">
+            <span class="program-number">Program 03</span>
+            <h3>Community Impact Initiative</h3>
+            <p>A semester-long program where mentees design and execute real community projects under KESAN mentor
+              supervision.</p>
+          </div>
+          <div class="program-meta">
+            <div class="meta-stat">
+              <strong>36</strong>
+              <span>Participants</span>
+            </div>
+            <div class="meta-divider"></div>
+            <div class="meta-stat">
+              <strong>6</strong>
+              <span>Months</span>
+            </div>
+            <div class="meta-divider"></div>
+            <div class="meta-stat">
+              <strong>2022</strong>
+              <span>Year</span>
+            </div>
+          </div>
+          <div class="program-body">
+            <h4>Press Release Highlights</h4>
+            <p>36 youth leaders planned and executed five community engagement projects across three districts of Brunei
+              — from youth literacy campaigns to environmental initiatives.</p>
+            <ul class="program-highlights">
+              <li>5 community projects delivered</li>
+              <li>Reached over 800 community members</li>
+              <li>Featured in Media Permata coverage</li>
+            </ul>
+          </div>
+          <div class="program-footer">
+            <a href="#" class="press-btn">
+              <svg viewBox="0 0 24 24">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                <polyline points="14,2 14,8 20,8" />
+                <line x1="16" y1="13" x2="8" y2="13" />
+                <line x1="16" y1="17" x2="8" y2="17" />
+              </svg>
+              Read Press Release
+            </a>
+            <span class="year-badge">2022</span>
+          </div>
+        </div>
+        <!-- ═══ END PROGRAM CARD 3 ═══ -->
+
+
+        <!-- ═══ PROGRAM CARD 4 ═══ -->
+        <div class="program-card scroll-reveal" data-category="personal">
+          <div class="program-photos">
+            <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=700&q=80"
+              alt="Mentoring Skills Workshop photos" />
+            <span class="program-cat-tag tag-personal">Personal</span>
+            <span class="program-photos-badge">Program Photos</span>
+          </div>
+          <div class="program-header">
+            <span class="program-number">Program 04</span>
+            <h3>Mentoring Skills Workshop Series</h3>
+            <p>A workshop series equipping advanced mentees with the skills to become effective peer mentors themselves.
+            </p>
+          </div>
+          <div class="program-meta">
+            <div class="meta-stat">
+              <strong>24</strong>
+              <span>Participants</span>
+            </div>
+            <div class="meta-divider"></div>
+            <div class="meta-stat">
+              <strong>4</strong>
+              <span>Sessions</span>
+            </div>
+            <div class="meta-divider"></div>
+            <div class="meta-stat">
+              <strong>2024</strong>
+              <span>Year</span>
+            </div>
+          </div>
+          <div class="program-body">
+            <h4>Press Release Highlights</h4>
+            <p>Senior KESAN mentees underwent four structured training sessions to develop their mentoring capabilities,
+              coaching techniques, and reflective leadership practices.</p>
+            <ul class="program-highlights">
+              <li>Graduated 24 trained youth mentors</li>
+              <li>Mentors now active in 8 institutions</li>
+              <li>In collaboration with UBD Faculty of Education</li>
+            </ul>
+          </div>
+          <div class="program-footer">
+            <a href="#" class="press-btn">
+              <svg viewBox="0 0 24 24">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                <polyline points="14,2 14,8 20,8" />
+                <line x1="16" y1="13" x2="8" y2="13" />
+                <line x1="16" y1="17" x2="8" y2="17" />
+              </svg>
+              Read Press Release
+            </a>
+            <span class="year-badge">2024</span>
+          </div>
+        </div>
+        <!-- ═══ END PROGRAM CARD 4 ═══ -->
+
+
+      </div><!-- end #programsGrid -->
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════
+     PROGRAMS PAGE CTA
+     ════════════════════════════════════ -->
+  <section class="section section-cta programs-cta" style="background:var(--gray);">
+    <div class="section-cta-inner">
+      <div class="section-label">Collaborate</div>
+      <div class="gold-line" style="margin:0 auto 2rem;"></div>
+      <h2>Want to Run a Program with KESAN?</h2>
+      <p>Partner with KESAN to bring structured youth leadership programs to your institution or community.</p>
+      <a href="mailto:info@kesan.org.bn" class="btn-primary">Contact KESAN</a>
+    </div>
+  </section>
+
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <img src="assets/kesan_icon.png" alt="KESAN" />
+        <p>Persatuan Kemajuan Insan (KESAN) is a Brunei-based NGO dedicated to developing youth leaders through
+          structured, long-term mentoring.</p>
+      </div>
+      <div class="footer-col">
+        <h4>About KESAN</h4>
+        <a href="index.html">Who We Are</a>
+        <a href="journey.html">Mentoring Journey</a>
+        <a href="programs.html">Programs</a>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <a href="mailto:info@kesan.org.bn">info@kesan.org.bn</a>
+        <a href="tel:+6731234567">+673 123 4567</a>
+        <p>Bandar Seri Begawan,<br>Brunei Darussalam</p>
+      </div>
+      <div class="footer-col">
+        <h4>Connect</h4>
+        <a href="#">Facebook</a>
+        <a href="#">Instagram</a>
+        <a href="#">LinkedIn</a>
+      </div>
+      <div class="footer-col">
+        <h4>Official Info</h4>
+        <p>Registered NGO under the laws of Brunei Darussalam</p>
+        <p>Reg. No: KESAN/BN/0001</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2025 Persatuan Kemajuan Insan (KESAN). All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+
+</html>
