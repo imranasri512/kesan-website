@@ -1807,3 +1807,560 @@ a {
     flex-wrap: wrap;
   }
 }
+
+/* ════════════════════════════════════════════════════════════
+   PROGRAMS PAGE — NEW COMPONENTS
+   (toolbar, search, see-more, overview capsule, date meta)
+   Added as part of data.js refactor.
+   ════════════════════════════════════════════════════════════ */
+
+/* ── Toolbar: search + result count side by side ── */
+.programs-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  margin-bottom: 2.5rem;
+  flex-wrap: wrap;
+}
+
+/* ── Search wrapper (icon + input) ── */
+.programs-search-wrap {
+  position: relative;
+  flex: 1;
+  min-width: 240px;
+  max-width: 480px;
+}
+
+.search-icon {
+  position: absolute;
+  left: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 16px;
+  height: 16px;
+  color: var(--text-muted);
+  pointer-events: none;
+}
+
+/* Search input field */
+.programs-search {
+  width: 100%;
+  background: var(--gray-mid);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  padding: 0.75rem 1rem 0.75rem 2.75rem; /* left pad for icon */
+  color: var(--white);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.9rem;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  outline: none;
+}
+
+.programs-search::placeholder {
+  color: var(--text-dim);
+}
+
+.programs-search:focus {
+  border-color: rgba(255, 222, 89, 0.4);
+  box-shadow: 0 0 0 3px rgba(255, 222, 89, 0.06);
+}
+
+/* Result count label ("Showing 4 of 6 programs") */
+.result-count {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  white-space: nowrap;
+  letter-spacing: 0.03em;
+}
+
+
+/* ── Overview capsule — slides up from photo on hover ──────
+   The capsule sits inside .program-photos (position:relative).
+   By default it's fully below the photo (translateY(100%)).
+   On .program-card:hover it slides up into view.
+   ──────────────────────────────────────────────────────── */
+.program-overview-capsule {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  /* Glass-morphism panel */
+  background: rgba(10, 10, 10, 0.88);
+  backdrop-filter: blur(10px);
+  border-top: 1px solid rgba(255, 222, 89, 0.25);
+  padding: 1.25rem 1.5rem;
+  /* Start hidden below the photo */
+  transform: translateY(100%);
+  transition: transform 0.38s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 3;
+  /* Rounded corners only at the top when sliding up */
+  border-radius: 0 0 0 0;
+}
+
+/* Slide up when the card is hovered */
+.program-card:hover .program-overview-capsule {
+  transform: translateY(0);
+}
+
+.program-overview-text {
+  font-size: 0.85rem;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.88);
+  margin: 0;
+}
+
+
+/* ── Date meta — wider to fit full date string ── */
+.meta-date {
+  font-family: 'DM Sans', sans-serif !important; /* override Playfair for dates */
+  font-size: 0.85rem !important;
+  font-weight: 600 !important;
+  line-height: 1.3 !important;
+  color: var(--gold);
+  display: block;
+  /* Allow date text to wrap rather than overflow */
+  white-space: normal;
+  word-break: break-word;
+}
+
+/* Give the date meta-stat column more room */
+.program-meta .meta-stat:last-child {
+  flex: 1.6;
+}
+
+
+/* ── Disabled press button (no link yet) ── */
+.press-btn--disabled {
+  opacity: 0.45;
+  cursor: default;
+  pointer-events: none;
+}
+
+
+/* ── See More button & wrapper ── */
+.see-more-wrap {
+  text-align: center;
+  margin-top: 3rem;
+}
+
+.btn-see-more {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: transparent;
+  border: 2px solid rgba(255, 222, 89, 0.35);
+  color: var(--gold);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  padding: 0.85rem 2.25rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.25s, border-color 0.25s, transform 0.2s;
+}
+
+.btn-see-more:hover {
+  background: rgba(255, 222, 89, 0.08);
+  border-color: var(--gold);
+  transform: translateY(-2px);
+}
+
+/* Hidden by JS once all cards are shown */
+.btn-see-more[style*="display: none"] {
+  display: none !important;
+}
+
+
+/* ── Mobile adjustments for toolbar ── */
+@media (max-width: 600px) {
+  .programs-toolbar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .programs-search-wrap {
+    max-width: 100%;
+    width: 100%;
+  }
+}
+
+
+/* ════════════════════════════════════════════════════════════
+   PROGRAM CARD — entry animation
+   
+   Cards injected by JS start hidden. main.js adds
+   .program-card--visible with a staggered delay to animate
+   them in. This is separate from .scroll-reveal because
+   cards are created after page load (dynamically).
+   ════════════════════════════════════════════════════════════ */
+
+/* Cards start invisible and shifted down */
+.program-card {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s ease, transform 0.5s ease,
+              border-color 0.3s, box-shadow 0.3s; /* keep hover transitions */
+}
+
+/* JS adds this class to make the card appear */
+.program-card.program-card--visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+
+
+
+
+
+
+
+/* ════════════════════════════════════════════════════════════
+   ORGANISATIONAL CHART — SVG RENDERER
+   Cards are positioned absolutely by JS.
+   SVG lines are drawn behind them on the same canvas.
+   ════════════════════════════════════════════════════════════ */
+
+.org-intro {
+  color: var(--text-muted);
+  font-size: 1rem;
+  line-height: 1.75;
+  max-width: 600px;
+  margin-top: 0.75rem;
+  margin-bottom: 3rem;
+}
+
+/* Outer container — sized and positioned by JS */
+.org-chart {
+  overflow-x: auto;
+  padding-bottom: 1rem;
+}
+
+/* SVG layer sits behind all cards */
+.org-svg {
+  display: block;
+}
+
+/* ── Card wrapper — JS sets left/top/width via inline style ─ */
+.org-node-wrap {
+  position: absolute;
+  /* Hover: card slides left, details panel slides in right */
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 1;
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+}
+
+.org-node-wrap:hover {
+  transform: translateX(-55px);
+  z-index: 20;
+}
+
+/* ── The card itself ─────────────────────────────────────── */
+.org-node {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: var(--gray-mid);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: 10px;
+  overflow: hidden;
+  width: 100%; /* fills the wrapper width set by JS */
+  position: relative;
+  transition: border-color 0.3s, box-shadow 0.3s;
+  cursor: default;
+}
+
+.org-node-wrap:hover .org-node {
+  border-color: rgba(255, 222, 89, 0.55);
+  box-shadow: 0 8px 36px rgba(0, 0, 0, 0.55);
+}
+
+/* Gold left accent bar */
+.org-node::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 3px;
+  background: var(--gold);
+  opacity: 0;
+  transition: opacity 0.3s;
+  z-index: 1;
+  border-radius: 10px 0 0 10px;
+}
+.org-node-wrap:hover .org-node::before { opacity: 1; }
+
+/* ── Photo — square, fills card width ────────────────────── */
+.org-photo-wrap {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  background: rgba(255, 222, 89, 0.04);
+  flex-shrink: 0;
+}
+
+.org-photo-wrap img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+  transition: transform 0.4s ease;
+}
+
+.org-node-wrap:hover .org-photo-wrap img { transform: scale(1.05); }
+
+.org-photo-placeholder {
+  width: 100%; height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 222, 89, 0.03);
+}
+
+.org-photo-placeholder svg {
+  width: 36px; height: 36px;
+  stroke: rgba(255, 222, 89, 0.3);
+}
+
+/* ── Role + name below photo ─────────────────────────────── */
+.org-text {
+  width: 100%;
+  padding: 0.6rem 0.5rem 0.7rem;
+  text-align: center;
+  border-top: 1px solid rgba(255, 222, 89, 0.12);
+}
+
+.org-role {
+  font-size: 0.52rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: 700;
+  margin-bottom: 0.25rem;
+  line-height: 1.3;
+}
+
+.org-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 0.78rem;
+  font-weight: 600;
+  line-height: 1.3;
+  color: var(--white);
+}
+
+.org-name:empty::after {
+  content: 'TBA';
+  color: var(--text-dim);
+  font-style: italic;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.72rem;
+}
+
+/* ── Details panel — slides RIGHT out of the card ─────────── */
+.org-details {
+  position: absolute;
+  top: 0; bottom: 0;
+  left: 100%;
+  width: 0;
+  overflow: hidden;
+  background: rgba(12, 12, 12, 0.97);
+  border: 1px solid rgba(255, 222, 89, 0.25);
+  border-left: none;
+  border-radius: 0 10px 10px 0;
+  backdrop-filter: blur(10px);
+  transition: width 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 30;
+  display: flex;
+  align-items: center;
+}
+
+.org-node-wrap:hover .org-details { width: 220px; }
+
+.org-details-inner {
+  width: 220px;
+  flex-shrink: 0;
+  padding: 1rem 1.1rem;
+}
+
+.org-details-role {
+  font-size: 0.57rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: 700;
+  margin-bottom: 0.2rem;
+}
+
+.org-details-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  margin-bottom: 0.6rem;
+  color: var(--white);
+  line-height: 1.2;
+}
+
+.org-details-bio {
+  font-size: 0.75rem;
+  line-height: 1.75;
+  color: rgba(255, 255, 255, 0.72);
+  margin: 0;
+}
+
+
+/* ════════════════════════════════════════════════════════════
+   MOBILE — vertical stacked list (no SVG)
+   Shown on screens < 900px via JS (applyResponsive).
+   ════════════════════════════════════════════════════════════ */
+
+.org-mobile {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  width: 100%;
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+/* Each person row on mobile */
+.org-mobile-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  background: var(--gray-mid);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
+  padding: 0.85rem 1rem;
+  border-left: 3px solid var(--gold);
+  transition: border-color 0.2s;
+}
+
+/* Indent to show hierarchy */
+.org-mobile-indent-0 { margin-left: 0; }
+.org-mobile-indent-1 {
+  margin-left: 1.5rem;
+  border-left-color: rgba(255, 222, 89, 0.4);
+}
+
+/* Photo circle on mobile */
+.org-mobile-photo {
+  width: 52px; height: 52px;
+  border-radius: 50%;
+  overflow: hidden;
+  flex-shrink: 0;
+  background: rgba(255, 222, 89, 0.06);
+  border: 1px solid rgba(255, 222, 89, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.org-mobile-photo img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  object-position: center top;
+}
+
+.org-mobile-photo svg {
+  width: 24px; height: 24px;
+  stroke: rgba(255, 222, 89, 0.35);
+  fill: none;
+}
+
+.org-mobile-role {
+  font-size: 0.58rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: 700;
+  margin-bottom: 0.2rem;
+}
+
+.org-mobile-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 0.3rem;
+}
+
+.org-mobile-bio {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  line-height: 1.65;
+}
+
+
+
+/* ════════════════════════════════════════════════════════════
+   VIDEO SECTION
+   ════════════════════════════════════════════════════════════ */
+
+.video-section {
+  background: var(--gray);
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+}
+
+/* Two-column grid: text left, video right */
+.video-inner {
+  display: grid;
+  grid-template-columns: 1fr 1.6fr;
+  gap: 4rem;
+  align-items: center;
+}
+
+/* Left: text */
+.video-text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.video-text .section-title { margin-bottom: 1rem; }
+
+.video-text p {
+  color: var(--text-muted);
+  font-size: 1rem;
+  line-height: 1.8;
+  margin-top: 0.5rem;
+}
+
+/* Right: iframe wrapper */
+.video-frame-wrap { width: 100%; }
+
+/*
+  Responsive 16:9 iframe container.
+  padding-top: 56.25% = 9/16 × 100% locks the aspect ratio.
+  The iframe is then stretched absolutely to fill it.
+*/
+.video-frame {
+  position: relative;
+  width: 100%;
+  padding-top: 56.25%;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow:
+    0 0 0 1px rgba(255, 222, 89, 0.2),
+    0 20px 60px rgba(0, 0, 0, 0.5);
+}
+
+.video-frame iframe {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  border: none;
+  border-radius: 10px;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .video-inner {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+}
