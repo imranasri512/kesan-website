@@ -582,3 +582,94 @@ function animateCounter(el) {
   window.addEventListener('resize', applyResponsive);
 
 })();
+
+
+/* ════════════════════════════════════════════════════════════
+   8. SUCCESS STORIES PAGE (stories.html)
+   Reads SUCCESS_STORIES from data.js.
+   Only runs when #storiesGrid exists on the page.
+   ════════════════════════════════════════════════════════════ */
+
+(function initStoriesPage() {
+  const grid  = document.getElementById('storiesGrid');
+  const empty = document.getElementById('storiesEmpty');
+  if (!grid || typeof SUCCESS_STORIES === 'undefined') return;
+
+  let filtered = [...SUCCESS_STORIES];
+
+  function buildCard(s) {
+    const photo = s.photo
+      ? `<img src="${s.photo}" alt="${s.name}" />`
+      : `<div class="story-photo-placeholder">
+           <svg viewBox="0 0 24 24" fill="none" stroke-width="1">
+             <circle cx="12" cy="9" r="5"/>
+             <path d="M3 22c0-5 4-9 9-9s9 4 9 9"/>
+           </svg>
+         </div>`;
+
+    const achievements = s.achievements.map(a => `<li>${a}</li>`).join('');
+
+    return `
+      <div class="story-card">
+        <div class="story-photo">
+          ${photo}
+          <span class="story-cohort-badge">${s.cohort}</span>
+        </div>
+        <div class="story-body">
+          <div class="story-name">${s.name}</div>
+          <div class="story-role">${s.role}</div>
+          <blockquote class="story-quote">&ldquo;${s.quote}&rdquo;</blockquote>
+          <ul class="story-achievements">${achievements}</ul>
+          <div class="story-full" id="story-full-${s.id}">${s.story}</div>
+          <button class="story-toggle-btn" onclick="toggleStory('${s.id}', this)" aria-expanded="false">
+            <span>Read More</span>
+            <svg viewBox="0 0 24 24"><polyline points="6,9 12,15 18,9"/></svg>
+          </button>
+        </div>
+      </div>`;
+  }
+
+  function render() {
+    if (filtered.length === 0) {
+      grid.innerHTML = '';
+      if (empty) empty.style.display = 'block';
+    } else {
+      if (empty) empty.style.display = 'none';
+      grid.innerHTML = filtered.map(buildCard).join('');
+      grid.querySelectorAll('.story-card').forEach((card, i) => {
+        setTimeout(() => card.classList.add('story-card--visible'), i * 80);
+      });
+    }
+    const countEl = document.getElementById('storyCount');
+    if (countEl) {
+      const total = SUCCESS_STORIES.length;
+      countEl.textContent = filtered.length === total
+        ? `${total} ${total === 1 ? 'story' : 'stories'}`
+        : `${filtered.length} of ${total} stories`;
+    }
+  }
+
+  const searchInput = document.getElementById('storySearch');
+  if (searchInput) {
+    searchInput.addEventListener('input', () => {
+      const q = searchInput.value.trim().toLowerCase();
+      filtered = !q ? [...SUCCESS_STORIES] : SUCCESS_STORIES.filter(s =>
+        [s.name, s.role, s.cohort, s.quote, s.story, ...s.achievements]
+          .join(' ').toLowerCase().includes(q)
+      );
+      render();
+    });
+  }
+
+  render();
+})();
+
+/* Toggle story full text — called from onclick in each card */
+function toggleStory(id, btn) {
+  const el = document.getElementById('story-full-' + id);
+  if (!el) return;
+  const open = el.classList.toggle('open');
+  btn.classList.toggle('open', open);
+  btn.setAttribute('aria-expanded', String(open));
+  btn.querySelector('span').textContent = open ? 'Read Less' : 'Read More';
+}

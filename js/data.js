@@ -387,3 +387,92 @@ const ORG_CHART = {
   ],
 
 }; /* end ORG_CHART */
+
+
+/* ════════════════════════════════════════════════════════════
+   SUCCESS STORIES
+   Each object = one card on the Success Stories page.
+
+   HOW TO ADD A STORY
+   ───────────────────
+   1. Copy any object below.
+   2. Paste at the END of the array (before the closing ]; ).
+   3. Fill in the fields and save — the page updates automatically.
+
+   FIELDS
+   ───────
+   id           → card number shown on badge, e.g. "01"
+   name         → full name
+   role         → current role / institution
+   cohort       → KESAN cohort and year, e.g. "Cohort 2, 2022"
+   photo        → "assets/filename.jpg"  (or null if no photo yet)
+   quote        → short powerful quote shown on the card
+   story        → full narrative shown when "Read More" is clicked
+   achievements → array of bullet-point achievements
+   ════════════════════════════════════════════════════════════ */
+
+const SUCCESS_STORIES = [
+
+  {
+    id:     "01",
+    name:   "Siti Amirah binti Haji Ahmad",
+    role:   "Student Leader, Universiti Brunei Darussalam",
+    cohort: "Cohort 2, 2022",
+    photo:  null,   // ← replace with "assets/story_siti.jpg" when ready
+    quote:  "KESAN taught me that leadership isn't about having all the answers — it's about showing up for people.",
+    story:  "Siti joined KESAN during her second year at UBD, struggling with self-confidence and unsure of her direction. Through the Personal Leadership stage, she began to understand her own values and how they could guide her decisions. By the time she reached the Team Leadership stage, she was facilitating small group discussions herself. Today, she leads a student initiative focused on mental health awareness on campus — something she says she never imagined doing two years ago.",
+    achievements: [
+      "Founded the UBD Mental Health Awareness student circle",
+      "Facilitated 3 KESAN workshops as a peer mentor",
+      "Recipient of the UBD Student Leadership Award 2024",
+    ],
+  },
+
+  {
+    id:     "02",
+    name:   "Muhammad Hafiz bin Rosli",
+    role:   "Community Project Lead, Youth Development Centre",
+    cohort: "Cohort 1, 2020",
+    photo:  null,   // ← replace with "assets/story_hafiz.jpg" when ready
+    quote:  "The moment I stopped waiting to feel 'ready' was the moment things started to change.",
+    story:  "Hafiz was among KESAN's earliest mentees. He came in quiet, analytical, and deeply uncomfortable with public speaking. His mentor worked with him steadily — not to make him a performer, but to help him lead in ways that felt authentic. He found his strength in organising: planning logistics, coordinating teams, making sure everything ran smoothly. That skill took him to the Youth Development Centre, where he now leads community outreach projects across Brunei.",
+    achievements: [
+      "Led a youth outreach project reaching 400+ participants",
+      "Co-organised KESAN's School Outreach Program 2023",
+      "Promoted to Community Project Lead within 18 months",
+    ],
+  },
+
+  {
+    id:     "03",
+    name:   "Nur Izzati binti Mahmud",
+    role:   "Head Prefect, Sekolah Menengah Lambak Kanan",
+    cohort: "Cohort 3, 2023",
+    photo:  null,   // ← replace with "assets/story_izzati.jpg" when ready
+    quote:  "My mentor didn't just teach me how to lead — she showed me what it looks like.",
+    story:  "Izzati joined KESAN as a secondary school student, one of the youngest in Cohort 3. She was bright and motivated, but admitted she often led from anxiety rather than conviction. Her mentor modelled a style of leadership rooted in calm and care. Within a year, Izzati was applying those same principles as her school's Head Prefect — running morning assemblies, mediating student concerns, and supporting younger students.",
+    achievements: [
+      "Elected Head Prefect for the 2024–2025 academic year",
+      "Organised a community clean-up with 80 student volunteers",
+      "Invited to speak at KESAN's Annual Leadership Retreat 2024",
+    ],
+  },
+
+  /*
+    ── TEMPLATE — copy this block to add a new story ────────
+  {
+    id:     "04",
+    name:   "Full Name",
+    role:   "Current role / institution",
+    cohort: "Cohort X, YYYY",
+    photo:  null,
+    quote:  "A short powerful quote.",
+    story:  "Their full journey narrative.",
+    achievements: [
+      "Achievement one",
+      "Achievement two",
+    ],
+  },
+  */
+
+]; // ← end of SUCCESS_STORIES
