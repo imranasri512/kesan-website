@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Programs — KESAN</title>
+  <link rel="icon" type="image/png" href="assets/kesan_icon.png" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body>
+
+  <!-- Navigation (shared across all pages) -->
+  <nav class="nav" id="mainNav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">
+        <img src="assets/kesan_icon.png" alt="KESAN Logo" />
+        <div class="nav-logo-text">
+          <strong>KESAN</strong>
+          <span>Persatuan Kemajuan Insan</span>
+        </div>
+      </a>
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="journey.html">Mentoring Journey</a>
+        <a href="programs.html">Programs</a>
+        <a href="stories.html">Success Stories</a>
+        <a href="mailto:persatuan.kesan1@gmail.com" class="nav-cta">Work with KESAN</a>
+      </div>
+      <button class="nav-hamburger" onclick="toggleMenu()" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <div class="nav-mobile" id="mobileMenu">
+      <a href="index.html">Home</a>
+      <a href="journey.html">Mentoring Journey</a>
+      <a href="programs.html">Programs</a>
+      <a href="stories.html">Success Stories</a>
+      <a href="mailto:persatuan.kesan1@gmail.com">Work with KESAN</a>
+    </div>
+  </nav>
+
+
+  <!-- ═══════════════════════════════════
+       PAGE HERO
+       ════════════════════════════════════ -->
+  <section class="page-hero">
+    <div class="page-hero-inner">
+      <div class="section-label fade-up">Past Programs</div>
+      <!-- ← EDIT HEADLINE HERE -->
+      <h1 class="fade-up delay-1">
+        Programs That <em style="font-style:italic;color:var(--gold)">Shaped</em> Leaders
+      </h1>
+      <!-- ← EDIT INTRO TEXT HERE -->
+      <p class="fade-up delay-2">
+        A record of KESAN's past programs — each one a structured effort to develop youth leadership
+        through mentoring, real responsibility, and community engagement.
+      </p>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════
+       PROGRAMS SECTION
+       ════════════════════════════════════ -->
+  <section class="section programs-section">
+    <div class="section-inner">
+
+      <!-- ── Search & result count bar ─────────────────────
+           The search input filters cards live as you type.
+           Results count updates automatically. -->
+      <div class="programs-toolbar">
+
+        <div class="programs-search-wrap">
+          <!-- Search icon SVG -->
+          <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="11" cy="11" r="8" />
+            <line x1="21" y1="21" x2="16.65" y2="16.65" />
+          </svg>
+          <!-- ← Search field — filters by name, date, highlights -->
+          <input type="text" id="programSearch" class="programs-search" placeholder="Search programs by name or date…"
+            autocomplete="off" />
+        </div>
+
+        <!-- Shows "Showing X of Y programs" or search result count -->
+        <span id="resultCount" class="result-count"></span>
+
+      </div>
+
+
+      <!-- ── Programs grid ──────────────────────────────────
+           Cards are built automatically from data.js by main.js.
+           To add a program: edit js/data.js — do NOT edit here. -->
+      <div class="programs-grid" id="programsGrid">
+        <!-- Cards injected here by main.js -->
+      </div>
+
+
+      <!-- ── See More button ────────────────────────────────
+           Hidden automatically once all programs are shown. -->
+      <div class="see-more-wrap">
+        <button id="seeMoreBtn" class="btn-see-more">
+          See More
+        </button>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════
+       PAGE CTA
+       ════════════════════════════════════ -->
+  <section class="section section-cta programs-cta" style="background:var(--gray);">
+    <div class="section-cta-inner">
+      <div class="section-label">Collaborate</div>
+      <div class="gold-line" style="margin:0 auto 2rem;"></div>
+      <!-- ← EDIT CTA TEXT HERE -->
+      <h2>Want to Run a Program with KESAN?</h2>
+      <p>Partner with KESAN to bring structured youth leadership programs to your institution or community.</p>
+      <a href="mailto:persatuan.kesan1@gmail.com" class="btn-primary">Contact KESAN</a>
+    </div>
+  </section>
+
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <img src="assets/kesan_icon.png" alt="KESAN" />
+        <p>Persatuan Kemajuan Insan (KESAN) is a Brunei-based NGO dedicated to developing youth leaders through
+          structured, long-term mentoring.</p>
+      </div>
+      <div class="footer-col">
+        <h4>About KESAN</h4>
+        <a href="index.html">Who We Are</a>
+        <a href="journey.html">Mentoring Journey</a>
+        <a href="programs.html">Programs</a>
+        <a href="stories.html">Success Stories</a>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <!-- ← UPDATE EMAIL & PHONE -->
+        <a href="mailto:persatuan.kesan1@gmail.com">persatuan.kesan1@gmail.com</a>
+        <a href="tel:+6731234567">+673 123 4567</a>
+        <p>Bandar Seri Begawan,<br>Brunei Darussalam</p>
+      </div>
+      <div class="footer-col">
+        <h4>Connect</h4>
+        <a href="https://www.facebook.com/persatuankesan/?locale=ms_MY" target="_blank"
+          rel="noopener noreferrer">Facebook</a>
+        <a href="https://www.instagram.com/persatuan_kesan/?hl=en" target="_blank"
+          rel="noopener noreferrer">Instagram</a>
+        <a href="https://www.linkedin.com/company/persatuan-kemajuan-insan-kesan/" target="_blank"
+          rel="noopener noreferrer">LinkedIn</a>
+        <!-- ← ADD TIKTOK URL INSIDE href -->
+        <a href="https://www.tiktok.com/@persatuankesan" target="_blank" rel="noopener noreferrer">TikTok</a>
+      </div>
+      <div class="footer-col">
+        <h4>Official Info</h4>
+        <p>Registered NGO under the laws of Brunei Darussalam</p>
+        <p>Reg. No: KESAN/BN/0001</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2025 Persatuan Kemajuan Insan (KESAN). All rights reserved.</p>
+    </div>
+  </footer>
+
+
+  <!--
+    SCRIPT LOAD ORDER — important!
+    data.js must load BEFORE main.js so the PROGRAMS and
+    INSTITUTIONS arrays exist when main.js tries to read them.
+  -->
+  <script src="js/data.js"></script>
+  <script src="js/main.js"></script>
+
+</body>
+
+</html>
