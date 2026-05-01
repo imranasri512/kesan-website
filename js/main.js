@@ -352,14 +352,14 @@ function animateCounter(el) {
   if (!container || typeof ORG_CHART === 'undefined') return;
 
   /* ── Layout constants — tweak these to adjust spacing ── */
-  const CARD_W        = 155;  // card width  (px) — ← adjust to taste
-  const CARD_H        = 190;  // card height (px) — photo + text
-  const COL_GAP       = 40;   // horizontal gap between cards — ← increase for more breathing room
+  const CARD_W = 155;  // card width  (px) — ← adjust to taste
+  const CARD_H = 190;  // card height (px) — photo + text
+  const COL_GAP = 40;   // horizontal gap between cards — ← increase for more breathing room
   const ROW_GAP_SHORT = 60;   // vertical gap: trunk → tier-2 cards (Secretary, Finance)
-  const ROW_GAP_LONG  = 320;  // vertical gap: trunk → tier-3 cards (Heads) — must be > ROW_GAP_SHORT + CARD_H
-  const TRUNK_Y       = CARD_H + 50; // y of the horizontal trunk line
-  const LINE_COLOR    = 'rgba(255,222,89,0.45)';
-  const LINE_WIDTH    = 2;
+  const ROW_GAP_LONG = 320;  // vertical gap: trunk → tier-3 cards (Heads) — must be > ROW_GAP_SHORT + CARD_H
+  const TRUNK_Y = CARD_H + 50; // y of the horizontal trunk line
+  const LINE_COLOR = 'rgba(255,222,89,0.45)';
+  const LINE_WIDTH = 2;
 
   /* ── Build node list with positions ─────────────────── */
   /*
@@ -383,11 +383,11 @@ function animateCounter(el) {
   }
 
   // Canvas width = widest row + padding
-  const PADDING     = 80;  // outer padding around the whole canvas
-  const tier2Width  = rowWidth(tier2Cards.length);
-  const tier3Width  = rowWidth(tier3Cards.length);
+  const PADDING = 80;  // outer padding around the whole canvas
+  const tier2Width = rowWidth(tier2Cards.length);
+  const tier3Width = rowWidth(tier3Cards.length);
   const canvasWidth = Math.max(CARD_W, tier2Width, tier3Width) + PADDING * 2;
-  const centreX     = canvasWidth / 2;
+  const centreX = canvasWidth / 2;
 
   // X position of card i in a row of n cards (left edge)
   function cardX(i, n) {
@@ -400,16 +400,16 @@ function animateCounter(el) {
   function cardCX(i, n) { return cardX(i, n) + CARD_W / 2; }
 
   /* ── Calculate canvas height ─────────────────────────── */
-  const presY   = PADDING;
-  const trunkY  = presY + CARD_H + 36;          // horizontal trunk y
-  const tier2Y  = trunkY + ROW_GAP_SHORT;       // tier2 card top
-  const tier3Y  = trunkY + ROW_GAP_LONG;        // tier3 card top
+  const presY = PADDING;
+  const trunkY = presY + CARD_H + 36;          // horizontal trunk y
+  const tier2Y = trunkY + ROW_GAP_SHORT;       // tier2 card top
+  const tier3Y = trunkY + ROW_GAP_LONG;        // tier3 card top
   const canvasH = tier3Y + CARD_H + PADDING;
 
 
   /* ── Build card HTML ─────────────────────────────────── */
   function buildCard(person, tier, x, y) {
-    const name  = person.name || '';
+    const name = person.name || '';
     const photo = person.photo
       ? `<img src="${person.photo}" alt="${name}" />`
       : `<div class="org-photo-placeholder">
@@ -462,11 +462,11 @@ function animateCounter(el) {
   /* ── Render ──────────────────────────────────────────── */
   function render() {
     let cardsHTML = '';
-    const lines   = [];
+    const lines = [];
 
     /* President */
-    const presX   = centreX - CARD_W / 2;
-    const presCX  = centreX;
+    const presX = centreX - CARD_W / 2;
+    const presCX = centreX;
     const presBotY = presY + CARD_H;  // bottom of president card
     cardsHTML += buildCard(ORG_CHART, 1, presX, presY);
 
@@ -475,14 +475,14 @@ function animateCounter(el) {
 
     /* Determine x span of trunk:
        covers from leftmost column to rightmost column of ALL nodes */
-    const allN    = tier2Cards.length + tier3Cards.length;
+    const allN = tier2Cards.length + tier3Cards.length;
     // We'll compute trunk span after placing all columns
 
     const allCentres = [];
 
     /* Tier 2 cards */
     tier2Cards.forEach((person, i) => {
-      const x  = cardX(i, tier2Cards.length);
+      const x = cardX(i, tier2Cards.length);
       const cx = cardCX(i, tier2Cards.length);
       cardsHTML += buildCard(person, 2, x, tier2Y);
       allCentres.push(cx);
@@ -493,7 +493,7 @@ function animateCounter(el) {
 
     /* Tier 3 cards */
     tier3Cards.forEach((person, i) => {
-      const x  = cardX(i, tier3Cards.length);
+      const x = cardX(i, tier3Cards.length);
       const cx = cardCX(i, tier3Cards.length);
       cardsHTML += buildCard(person, 3, x, tier3Y);
       allCentres.push(cx);
@@ -504,16 +504,23 @@ function animateCounter(el) {
 
     /* Horizontal trunk spanning all columns */
     if (allCentres.length >= 2) {
-      const trunkLeft  = Math.min(...allCentres);
+      const trunkLeft = Math.min(...allCentres);
       const trunkRight = Math.max(...allCentres);
       lines.push({ x1: trunkLeft, y1: trunkY, x2: trunkRight, y2: trunkY });
     }
 
     /* Assemble container */
+    /* Cap the canvas width to the available container width
+       so the SVG chart never forces horizontal scroll on narrow screens */
+    const availW = container.parentElement
+      ? container.parentElement.clientWidth || canvasWidth
+      : canvasWidth;
+    const displayW = Math.min(canvasWidth, availW);
+
     container.style.position = 'relative';
-    container.style.width    = canvasWidth + 'px';
-    container.style.height   = canvasH + 'px';
-    container.style.margin   = '0 auto';
+    container.style.width = displayW + 'px';
+    container.style.height = canvasH + 'px';
+    container.style.margin = '0 auto';
     container.style.overflow = 'visible';
 
     container.innerHTML = buildSVG(lines) + cardsHTML;
@@ -554,8 +561,8 @@ function animateCounter(el) {
       <div class="org-mobile-card org-mobile-indent-${indent}">
         <div class="org-mobile-photo">
           ${person.photo
-            ? `<img src="${person.photo}" alt="${name}" />`
-            : `<svg viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+        ? `<img src="${person.photo}" alt="${name}" />`
+        : `<svg viewBox="0 0 24 24" fill="none" stroke-width="1.5">
                  <circle cx="12" cy="8" r="4"/>
                  <path d="M4 20c0-4 3.58-7 8-7s8 3 8 7"/>
                </svg>`}
@@ -578,6 +585,8 @@ function animateCounter(el) {
     }
   }
 
+  /* Call applyResponsive FIRST so the wide SVG canvas never
+     gets set on mobile — avoids forcing page width at load time */
   applyResponsive();
   window.addEventListener('resize', applyResponsive);
 
@@ -585,91 +594,70 @@ function animateCounter(el) {
 
 
 /* ════════════════════════════════════════════════════════════
-   8. SUCCESS STORIES PAGE (stories.html)
-   Reads SUCCESS_STORIES from data.js.
-   Only runs when #storiesGrid exists on the page.
+   9. FLOATING MOBILE NAVIGATION BUTTON
+   Injects a fixed bottom-right pill menu on mobile.
+   Highlights the current page automatically.
    ════════════════════════════════════════════════════════════ */
 
-(function initStoriesPage() {
-  const grid  = document.getElementById('storiesGrid');
-  const empty = document.getElementById('storiesEmpty');
-  if (!grid || typeof SUCCESS_STORIES === 'undefined') return;
+(function initFloatNav() {
 
-  let filtered = [...SUCCESS_STORIES];
+  const pages = [
+    { label: 'Home', href: 'index.html' },
+    { label: 'Mentoring Journey', href: 'journey.html' },
+    { label: 'Programs', href: 'programs.html' },
+    { label: 'Success Stories', href: 'stories.html' },
+  ];
 
-  function buildCard(s) {
-    const photo = s.photo
-      ? `<img src="${s.photo}" alt="${s.name}" />`
-      : `<div class="story-photo-placeholder">
-           <svg viewBox="0 0 24 24" fill="none" stroke-width="1">
-             <circle cx="12" cy="9" r="5"/>
-             <path d="M3 22c0-5 4-9 9-9s9 4 9 9"/>
-           </svg>
-         </div>`;
+  /* Detect current page */
+  const current = window.location.pathname.split('/').pop() || 'index.html';
 
-    const achievements = s.achievements.map(a => `<li>${a}</li>`).join('');
-
+  /* Build the floating nav HTML */
+  const linksHTML = pages.map(p => {
+    const isActive = current === p.href ? ' float-active' : '';
     return `
-      <div class="story-card">
-        <div class="story-photo">
-          ${photo}
-          <span class="story-cohort-badge">${s.cohort}</span>
-        </div>
-        <div class="story-body">
-          <div class="story-name">${s.name}</div>
-          <div class="story-role">${s.role}</div>
-          <blockquote class="story-quote">&ldquo;${s.quote}&rdquo;</blockquote>
-          <ul class="story-achievements">${achievements}</ul>
-          <div class="story-full" id="story-full-${s.id}">${s.story}</div>
-          <button class="story-toggle-btn" onclick="toggleStory('${s.id}', this)" aria-expanded="false">
-            <span>Read More</span>
-            <svg viewBox="0 0 24 24"><polyline points="6,9 12,15 18,9"/></svg>
-          </button>
-        </div>
-      </div>`;
-  }
+      <a href="${p.href}" class="float-nav-link${isActive}">
+        <span></span>${p.label}
+      </a>`;
+  }).join('');
 
-  function render() {
-    if (filtered.length === 0) {
-      grid.innerHTML = '';
-      if (empty) empty.style.display = 'block';
-    } else {
-      if (empty) empty.style.display = 'none';
-      grid.innerHTML = filtered.map(buildCard).join('');
-      grid.querySelectorAll('.story-card').forEach((card, i) => {
-        setTimeout(() => card.classList.add('story-card--visible'), i * 80);
-      });
-    }
-    const countEl = document.getElementById('storyCount');
-    if (countEl) {
-      const total = SUCCESS_STORIES.length;
-      countEl.textContent = filtered.length === total
-        ? `${total} ${total === 1 ? 'story' : 'stories'}`
-        : `${filtered.length} of ${total} stories`;
-    }
-  }
+  const html = `
+    <div class="float-nav" id="floatNav">
+      <div class="float-nav-menu" id="floatNavMenu">
+        ${linksHTML}
+      </div>
+      <button class="float-nav-btn" id="floatNavBtn"
+              aria-label="Quick navigation" aria-expanded="false"
+              onclick="toggleFloatNav()">
+        <svg viewBox="0 0 24 24">
+          <line x1="3" y1="12" x2="21" y2="12"/>
+          <line x1="3" y1="6"  x2="21" y2="6"/>
+          <line x1="3" y1="18" x2="21" y2="18"/>
+        </svg>
+      </button>
+    </div>`;
 
-  const searchInput = document.getElementById('storySearch');
-  if (searchInput) {
-    searchInput.addEventListener('input', () => {
-      const q = searchInput.value.trim().toLowerCase();
-      filtered = !q ? [...SUCCESS_STORIES] : SUCCESS_STORIES.filter(s =>
-        [s.name, s.role, s.cohort, s.quote, s.story, ...s.achievements]
-          .join(' ').toLowerCase().includes(q)
-      );
-      render();
-    });
-  }
+  /* Inject before closing </body> */
+  document.body.insertAdjacentHTML('beforeend', html);
 
-  render();
 })();
 
-/* Toggle story full text — called from onclick in each card */
-function toggleStory(id, btn) {
-  const el = document.getElementById('story-full-' + id);
-  if (!el) return;
-  const open = el.classList.toggle('open');
-  btn.classList.toggle('open', open);
-  btn.setAttribute('aria-expanded', String(open));
-  btn.querySelector('span').textContent = open ? 'Read Less' : 'Read More';
+/* Toggle the floating nav menu (global — called from onclick) */
+function toggleFloatNav() {
+  const btn = document.getElementById('floatNavBtn');
+  const menu = document.getElementById('floatNavMenu');
+  if (!btn || !menu) return;
+  const isOpen = menu.classList.toggle('open');
+  btn.classList.toggle('open', isOpen);
+  btn.setAttribute('aria-expanded', String(isOpen));
 }
+
+/* Close float nav when clicking outside */
+document.addEventListener('click', function (e) {
+  const nav = document.getElementById('floatNav');
+  if (nav && !nav.contains(e.target)) {
+    const menu = document.getElementById('floatNavMenu');
+    const btn = document.getElementById('floatNavBtn');
+    if (menu) menu.classList.remove('open');
+    if (btn) { btn.classList.remove('open'); btn.setAttribute('aria-expanded', 'false'); }
+  }
+});
