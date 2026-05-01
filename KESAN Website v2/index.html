@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>KESAN — Persatuan Kemajuan Insan</title>
+
+  <!-- Favicon — using the KESAN flower logo -->
+  <link rel="icon" type="image/png" href="assets/kesan_icon.png">
+  <!-- Shared stylesheet -->
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body>
+
+  <!-- ═══════════════════════════════════
+     NAVIGATION
+     To add a new page: duplicate one <a> tag and update href + text
+     ════════════════════════════════════ -->
+  <nav class="nav" id="mainNav">
+    <div class="nav-inner">
+
+      <!-- Logo -->
+      <a href="index.html" class="nav-logo">
+        <img src="assets/kesan_icon.png" alt="KESAN Logo" />
+        <div class="nav-logo-text">
+          <strong>KESAN</strong>
+          <span>Persatuan Kemajuan Insan</span>
+        </div>
+      </a>
+
+      <!-- Desktop links -->
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="journey.html">Mentoring Journey</a>
+        <a href="programs.html">Programs</a>
+        <a href="stories.html">Success Stories</a>
+        <!-- ← PRIMARY CTA — change mailto to the real email address -->
+        <a href="mailto:persatuan.kesan1@gmail.com" class="nav-cta">Work with KESAN</a>
+      </div>
+
+      <!-- Mobile hamburger button -->
+      <button class="nav-hamburger" onclick="toggleMenu()" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+
+    <!-- Mobile dropdown -->
+    <div class="nav-mobile" id="mobileMenu">
+      <a href="index.html">Home</a>
+      <a href="journey.html">Mentoring Journey</a>
+      <a href="programs.html">Programs</a>
+      <a href="stories.html">Success Stories</a>
+      <a href="mailto:persatuan.kesan1@gmail.com">Work with KESAN</a>
+    </div>
+  </nav>
+
+
+  <!-- ═══════════════════════════════════
+     SECTION 1 — HERO
+     ════════════════════════════════════ -->
+  <section class="home-hero">
+
+    <!-- Left: text content -->
+    <div class="hero-content">
+
+      <!-- Small pill label -->
+      <div class="hero-eyebrow fade-up">
+        <span class="hero-eyebrow-dot"></span>
+        Persatuan Kemajuan Insan
+      </div>
+
+      <!-- Main headline — ← EDIT HEADLINE TEXT HERE -->
+      <h1 class="fade-up delay-1">
+        Developing <em>Youth Leaders</em> in Brunei Through Long-Term Mentoring
+      </h1>
+
+      <!-- Supporting paragraph — ← EDIT SUBTEXT HERE -->
+      <p class="fade-up delay-2">
+        Persatuan Kemajuan Insan (KESAN) mentors young people through a structured leadership journey — from personal
+        growth to team and community leadership.
+      </p>
+
+      <!-- CTA buttons -->
+      <div class="hero-buttons fade-up delay-3">
+        <!-- ← CHANGE EMAIL FOR "Work with KESAN" BUTTON -->
+        <a href="mailto:persatuan.kesan1@gmail.com" class="btn-primary">Work with
+          KESAN</a>
+        <a href="journey.html" class="btn-secondary">Our Mentoring Journey</a>
+      </div>
+    </div>
+
+    <!-- Right: full-height image panel -->
+    <div class="hero-image-panel">
+      <!--
+      ← REPLACE THIS src WITH A REAL MENTORING PHOTO
+      Recommended: high-resolution portrait-oriented image
+    -->
+      <img src="assets/kesan_3.jpg" alt="KESAN mentoring activity" />
+
+      <!-- Overlay badge on the image -->
+      <div class="hero-image-badge">
+        <span>Mentoring in Action</span>
+        <p>Building Brunei's next generation of leaders</p>
+      </div>
+    </div>
+  </section>
+
+
+
+  <!-- ═══════════════════════════════════
+       VIDEO INTRODUCTION
+       YouTube embed. If you see an error, the video owner
+       may have disabled embedding — contact them to enable it
+       in YouTube Studio → Content → Edit → More options → Allow embedding.
+
+       TO CHANGE THE VIDEO:
+       Replace KZDT3JDXgYc with the new video ID (the part after "watch?v=" in the URL).
+       ════════════════════════════════════ -->
+  <section class="section video-section">
+    <div class="section-inner video-inner">
+
+      <!-- Left: text -->
+      <div class="video-text">
+        <div class="section-label">Who We Are</div>
+        <h2 class="section-title">See KESAN in Action</h2>
+        <!-- ← EDIT DESCRIPTION TEXT HERE -->
+        <p>Watch how KESAN walks alongside young people through their leadership journey — from the first step of
+          personal growth to leading communities across Brunei.</p>
+      </div>
+
+      <!-- Right: YouTube embed -->
+      <!-- ← REPLACE KZDT3JDXgYc WITH YOUR VIDEO ID TO CHANGE THE VIDEO -->
+      <div class="video-frame-wrap">
+        <div class="video-frame">
+          <iframe src="https://www.youtube.com/embed/KZDT3JDXgYc?rel=0&modestbranding=1"
+            title="KESAN — Introduction Video" frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen></iframe>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════
+     SECTION 2 — WHAT WE DO
+     ════════════════════════════════════ -->
+  <section class="section what-we-do">
+    <div class="section-inner what-grid">
+
+      <!-- Left: image -->
+      <div class="what-img scroll-reveal">
+        <!--
+        ← REPLACE WITH A REAL LEADERSHIP / MENTORING ACTIVITY PHOTO
+      -->
+        <img src="assets/kesan_2.jpg" />
+        <span class="what-img-caption">Leadership in Action</span>
+      </div>
+
+      <!-- Right: text -->
+      <div class="what-text scroll-reveal">
+        <div class="section-label">Our Approach</div>
+        <h2 class="section-title">What We Do</h2>
+
+        <!-- ← EDIT BODY TEXT HERE -->
+        <p>KESAN focuses on mentoring youth leaders through structured leadership development. Our approach emphasises
+          personal growth, responsibility, and leadership through real engagement with teams and communities.</p>
+        <p>We believe that effective leaders are built through sustained, guided experience — not short workshops.
+          KESAN's mentoring model walks alongside young people across years of real development.</p>
+
+        <!-- Keyword pills — ← ADD OR REMOVE PILLARS AS NEEDED -->
+        <div class="pillar-list">
+          <span class="pillar">Personal Growth</span>
+          <span class="pillar">Responsibility</span>
+          <span class="pillar">Team Dynamics</span>
+          <span class="pillar">Community Impact</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+
+
+  <!-- ═══════════════════════════════════
+       SECTION 2b — ORGANISATIONAL CHART
+       Built automatically from ORG_CHART in js/data.js.
+       Do NOT edit member details here — edit data.js instead.
+       ════════════════════════════════════ -->
+  <section class="section org-chart-section">
+    <div class="section-inner">
+      <div class="section-label">Our Team</div>
+      <h2 class="section-title">The People Behind KESAN</h2>
+      <p class="org-intro">
+        KESAN is led by a dedicated team of mentors and organisers committed to developing youth leadership across
+        Brunei.
+      </p>
+      <!-- Chart rendered here by main.js from ORG_CHART in data.js -->
+      <div class="org-chart" id="orgChart"></div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════
+     SECTION 3 — LEADERSHIP PATHWAY
+     ════════════════════════════════════ -->
+  <section class="section pathway">
+    <div class="section-inner">
+
+      <div class="section-label">The Journey</div>
+      <h2 class="section-title">Leadership Development Pathway</h2>
+
+      <div class="pathway-stages">
+
+        <!-- Stage 1 -->
+        <div class="pathway-stage stage-1 scroll-reveal">
+          <div class="stage-circle">01</div>
+          <div class="stage-tag">Stage One</div>
+          <div class="stage-title">Personal Leadership</div>
+          <p class="stage-desc">Building discipline, values, and self-awareness from within.</p>
+          <!-- ← EDIT FOCUS POINTS HERE -->
+          <ul class="stage-focus">
+            <li>Discipline &amp; Habits</li>
+            <li>Personal Values</li>
+            <li>Self-Awareness</li>
+            <li>Individual Responsibility</li>
+          </ul>
+        </div>
+
+        <!-- Stage 2 -->
+        <div class="pathway-stage stage-2 scroll-reveal">
+          <div class="stage-circle">02</div>
+          <div class="stage-tag">Stage Two</div>
+          <div class="stage-title">Team Leadership</div>
+          <p class="stage-desc">Learning to guide, motivate, and support others effectively.</p>
+          <ul class="stage-focus">
+            <li>Guiding Others</li>
+            <li>Teamwork &amp; Collaboration</li>
+            <li>Group Responsibility</li>
+            <li>Conflict Navigation</li>
+          </ul>
+        </div>
+
+        <!-- Stage 3 -->
+        <div class="pathway-stage stage-3 scroll-reveal">
+          <div class="stage-circle">03</div>
+          <div class="stage-tag">Stage Three</div>
+          <div class="stage-title">Community Leadership</div>
+          <p class="stage-desc">Creating meaningful impact beyond the group, for society.</p>
+          <ul class="stage-focus">
+            <li>Community Engagement</li>
+            <li>Societal Contribution</li>
+            <li>Organising Initiatives</li>
+            <li>Legacy &amp; Impact</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════
+     SECTION 4 — IMPACT STATS
+     To update numbers: change data-target and data-suffix
+     ════════════════════════════════════ -->
+  <section class="section impact">
+    <div class="section-inner">
+
+      <div class="section-label">Our Impact</div>
+      <h2 class="section-title">By the Numbers</h2>
+
+      <div class="stats-grid">
+        <!-- ← CHANGE data-target TO UPDATE EACH STAT NUMBER -->
+        <div class="stat-card">
+          <span class="stat-number" data-target="12" data-suffix="+">0</span>
+          <div class="stat-label">Years Operating</div>
+        </div>
+        <div class="stat-card">
+          <span class="stat-number" data-target="500" data-suffix="+">0</span>
+          <div class="stat-label">Youths Mentored</div>
+        </div>
+        <div class="stat-card">
+          <span class="stat-number" data-target="80" data-suffix="+">0</span>
+          <div class="stat-label">Programs Conducted</div>
+        </div>
+        <div class="stat-card">
+          <span class="stat-number" data-target="25" data-suffix="+">0</span>
+          <div class="stat-label">Institutions Collaborated</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════
+     SECTION 5 — LEADERSHIP STORIES
+     Each testimony has ONE portrait + 3 phase cards.
+     To add a new person: duplicate the entire .testimony-layout block.
+     ════════════════════════════════════ -->
+  <section class="section testimonials">
+    <div class="section-inner">
+
+      <div class="section-label">Real Journeys</div>
+      <h2 class="section-title">Leadership Stories</h2>
+
+      <!-- ─── Testimony 1 ─── -->
+      <div class="testimony-layout scroll-reveal">
+
+        <!-- Portrait column -->
+        <div class="testimony-portrait">
+          <!--
+          ← REPLACE WITH A REAL PORTRAIT PHOTO of the person.
+          If no photo, remove the <img> and uncomment the initials block below.
+        -->
+          <div class="testimony-initials">SA</div>
+          <!--
+        <img
+          class="testimony-portrait-img"
+          src="path/to/portrait.jpg"
+          alt="Siti Amirah"
+        />
+        -->
+          <!-- ← UPDATE NAME & ROLE -->
+          <div class="testimony-name">Siti Amirah</div>
+          <div class="testimony-role">Student Leader, UBD</div>
+        </div>
+
+        <!-- Three phase cards -->
+        <div class="testimony-phases">
+
+          <div class="phase-card">
+            <div class="phase-label">
+              <!-- SVG icon: location pin / "before" -->
+              <svg class="phase-icon" viewBox="0 0 24 24">
+                <circle cx="12" cy="12" r="3" />
+                <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z" />
+              </svg>
+              Before
+            </div>
+            <!-- ← EDIT QUOTE -->
+            <p class="phase-quote">"I struggled with confidence when speaking to others."</p>
+          </div>
+
+          <div class="phase-card">
+            <div class="phase-label">
+              <!-- SVG icon: sprout / growth -->
+              <svg class="phase-icon" viewBox="0 0 24 24">
+                <path d="M12 22V12M12 12C12 8 9 5 5 5c0 4 2 7 7 7zM12 12c0-4 3-7 7-7-1 4-3 7-7 7" />
+              </svg>
+              During
+            </div>
+            <p class="phase-quote">"My mentor guided me through real leadership responsibilities step by step."</p>
+          </div>
+
+          <div class="phase-card">
+            <div class="phase-label">
+              <!-- SVG icon: flag / achievement -->
+              <svg class="phase-icon" viewBox="0 0 24 24">
+                <path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z" />
+                <line x1="4" y1="22" x2="4" y2="15" />
+              </svg>
+              After
+            </div>
+            <p class="phase-quote">"Today I lead a student initiative at my university with confidence."</p>
+          </div>
+
+        </div>
+      </div>
+      <!-- ─── End Testimony 1 ─── -->
+      <!--
+      TO ADD MORE TESTIMONIES:
+      Copy the .testimony-layout block above, paste below, and update:
+        - .testimony-initials or .testimony-portrait-img
+        - .testimony-name and .testimony-role
+        - The three .phase-quote paragraphs
+    -->
+
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════
+     SECTION 6 — INSTITUTIONS
+     Logos auto-scroll. To add: duplicate an .inst-item in BOTH sets
+     (the list is duplicated so the scroll loops seamlessly).
+     ════════════════════════════════════ -->
+  <section class="section institutions">
+    <div class="section-inner">
+
+      <div class="section-label">Our Partners</div>
+      <h2 class="section-title">Institutions We've Worked With</h2>
+
+      <div class="inst-scroll-wrapper">
+        <!--
+        The .inst-track contains the list TWICE so the CSS animation
+        can loop seamlessly (it scrolls to the midpoint, then jumps back).
+        ← ALWAYS KEEP BOTH HALVES IDENTICAL.
+      -->
+        <div class="inst-track" id="instTrack">
+          <!-- Tiles built automatically from js/data.js by main.js -->
+        </div><!-- end .inst-track -->
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════
+     SECTION 7 — COLLABORATE CTA
+     ════════════════════════════════════ -->
+  <section class="section collaborate section-cta">
+    <div class="section-cta-inner">
+      <div class="section-label">Partner With Us</div>
+      <div class="gold-line" style="margin:0 auto 2rem;"></div>
+      <!-- ← EDIT HEADLINE & BODY TEXT HERE -->
+      <h2>Collaborate with KESAN</h2>
+      <p>Universities and organizations partner with KESAN to develop youth leadership through mentoring and structured
+        programs. Together, we shape the next generation of Brunei&rsquo;s leaders.</p>
+      <!-- ← CHANGE EMAIL HERE -->
+      <a href="mailto:persatuan.kesan1@gmail.com" class="btn-primary">Contact KESAN</a>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════
+     FOOTER
+     ════════════════════════════════════ -->
+  <footer class="footer">
+    <div class="footer-inner">
+
+      <!-- Brand column -->
+      <div class="footer-brand">
+        <img src="assets/kesan_icon.png" alt="KESAN" />
+        <p>Persatuan Kemajuan Insan (KESAN) is a Brunei-based NGO dedicated to developing youth leaders through
+          structured, long-term mentoring.</p>
+      </div>
+
+      <!-- About links -->
+      <div class="footer-col">
+        <h4>About KESAN</h4>
+        <a href="index.html">Who We Are</a>
+        <a href="journey.html">Mentoring Journey</a>
+        <a href="programs.html">Programs</a>
+        <a href="stories.html">Success Stories</a>
+      </div>
+
+      <!-- Contact -->
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <!-- ← UPDATE EMAIL & PHONE HERE -->
+        <a href="mailto:persatuan.kesan1@gmail.com">persatuan.kesan1@gmail.com</a>
+        <a href="tel:+6731234567">+673 123 4567</a>
+        <p>Bandar Seri Begawan,<br>Brunei Darussalam</p>
+      </div>
+
+      <!-- Social / Connect -->
+      <div class="footer-col">
+        <h4>Connect</h4>
+        <!-- ← UPDATE SOCIAL LINKS HERE -->
+        <a href="https://www.facebook.com/persatuankesan/?locale=ms_MY" target="_blank"
+          rel="noopener noreferrer">Facebook</a>
+        <a href="https://www.instagram.com/persatuan_kesan/?hl=en" target="_blank"
+          rel="noopener noreferrer">Instagram</a>
+        <a href="https://www.linkedin.com/company/persatuan-kemajuan-insan-kesan/" target="_blank"
+          rel="noopener noreferrer">LinkedIn</a>
+        <!-- ← ADD TIKTOK URL INSIDE href -->
+        <a href="https://www.tiktok.com/@persatuankesan" target="_blank" rel="noopener noreferrer">TikTok</a>
+      </div>
+
+      <!-- Official info / registration -->
+      <div class="footer-col">
+        <h4>Official Info</h4>
+        <p>Registered NGO under the laws of Brunei Darussalam</p>
+        <!-- ← UPDATE REG NUMBER HERE -->
+        <p>Reg. No: KESAN/BN/0001</p>
+      </div>
+
+    </div>
+
+    <div class="footer-bottom">
+      <p>&copy; 2025 Persatuan Kemajuan Insan (KESAN). All rights reserved.</p>
+    </div>
+
+  </footer>
+
+  <!--
+    SCRIPT LOAD ORDER — important!
+    data.js must load BEFORE main.js so PROGRAMS, INSTITUTIONS,
+    and ORG_CHART exist when main.js tries to read them.
+  -->
+  <script src="js/data.js"></script>
+  <script src="js/main.js"></script>
+
+</body>
+
+</html>
